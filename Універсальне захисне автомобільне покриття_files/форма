@@ -1,0 +1,112 @@
+ !-- Создаём форму и указываем её обработчик и метод --&gt;
+      <form id="order_form" action="./Універсальне захисне автомобільне покриття_files/thank_you_page.html" class="main-order-form m1-form" method="post" name="form">
+        <!-- Поле ввода имени -->
+        <input class="field" name="name" type="text" placeholder="Введіть ім&#39;я" required="">
+        <br>
+        <!-- Поле ввода почты  -->
+        <input class="field" name="phone" type="tel" placeholder="Введіть телефон" required="required" inputmode="text">
+        <br>
+        <select name="comment" class="field form-control form-select mb-3" required="">
+        
+          <option value="">Обрати колір</option>
+          <option value="1">
+           
+           
+            Коричневий
+           
+          
+            var product = document.querySelector('select[name="product"]').value;
+            \nКолір: ${productText}
+          
+            </option>
+          <option value="2"> Молочний</option>
+          <option value="3">Сірий</option>
+          <option value="4"> Бежевий</option>
+          <option value="4">  Чорний</option>
+          <option value="4">   Розовий темний</option>
+          <option value="4"> Розовий світлий</option>
+          <option value="4">  Голубий темний</option>
+          <option value="4">  Голубий світлий</option>
+      </select>
+     
+        <!-- Кнопка с надписью «Оформить заказ», которая запускает обработчик формы -->
+        <input class="button" type="submit" value="Зробити замовлення">
+      
+        <input type="hidden" name="product" id="hiddenProduct" value="Універсальне захисне автомобільне покриття" hidden="hidden">
+        <input type="hidden" name="product_id" id="product_id" value="45" hidden="hidden">
+        <input type="hidden" name="product_price" id="product_price" value="199" hidden="hidden">
+        <input type="hidden" name="fbp" id="fbp" value="1242375520261228" hidden="fbp">
+        <input type="hidden" name="count" value="1">
+        <input type="hidden" name="servername" value="/ceram_car">
+        <input type="hidden" name="type" value="offer">
+      </form>
+      <script type="text/javascript">
+        jQuery(function ($) {
+          $("input[type='tel']").mask("+38 (099) 999-9999");
+
+        });
+      </script>
+  <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('order_form').addEventListener('submit', function(e) {
+                e.preventDefault(); // Запобігаємо стандартній відправці форми
+    
+                // Отримуємо значення полів форми
+                var name = document.querySelector('input[name="name"]').value;
+                var phone = document.querySelector('input[name="phone"]').value;
+               
+                
+                // Перевірка значення product
+                var productText = document.querySelector('select[name="product"] option:checked').text;
+                
+                // Формуємо повідомлення
+                var message = `Нове замовлення:\nІм'я та прізвище: ${name} \nТелефон: ${phone}`;
+                
+                // Ваш токен та ID чату
+                var token = '7416410984:AAF3cXgnhF2e0SGFFg6sNEhEMKWBoW_vRdg';
+                var chatId = '585483356'; // Замініть YOUR_CHAT_ID на ваш реальний ID чату
+    
+                // Відправляємо повідомлення через Telegram API
+                fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message,
+                        parse_mode: "Markdown"
+                    })
+                })
+                .then(response => {
+                    console.log('Response Status:', response.status);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                    // Після успішної відправки, одразу перенаправляємо на сторінку "Дякую"
+                    window.location.href = "./Універсальне захисне автомобільне покриття_files/thank_you_page.html"; 
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Помилка при відправленні замовлення.');
+                });
+            });
+        });
+    </script>
+    
+
+
+
+<form id="order_form" action="./Універсальне захисне автомобільне покриття_files/thank_you_page.html" class="main-order-form m1-form" method="post" name="form">
+  <input class="field" name="name" type="text" placeholder="Введіть ім'я" required="">
+  <br>
+  <input class="field" name="phone" type="tel" placeholder="Введіть телефон" required="required" inputmode="text">
+  <br>
+
+  <input class="button" type="submit" value="Зробити замовлення">
+ 
+</form>

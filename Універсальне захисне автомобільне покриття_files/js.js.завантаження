@@ -1,0 +1,7 @@
+function modalRefresh() {
+    if ($("#m1-form").css("width", "400px"), $(window).width() < 720) {
+        var i = $(window).width() - 4,
+            m = i / -2;
+        $("#m1-form").css("width", i), $("#m1-form").css("margin-left", m)
+    }
+}
